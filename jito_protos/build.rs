@@ -15,5 +15,11 @@ fn main() {
             ],
             &["protos"],
         )
+    tonic_build::configure()
+        .compile_with_config(
+            prost_build::Config::new().protoc_arg("--experimental_allow_proto3_optional"),
+            &proto_files,
+            &proto_includes,
+        )
         .unwrap();
 }
